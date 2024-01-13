@@ -1,8 +1,11 @@
-import { ClerkProvider } from "@clerk/nextjs";
 import React from "react";
-import { Inter, Space_Grotesk } from "next/font/google";
 import type { Metadata } from "next";
+import { ClerkProvider } from "@clerk/nextjs";
+import { Inter, Space_Grotesk } from "next/font/google";
+
 import "./globals.css";
+import "../styles/prism.css";
+
 import { ThemeProvider } from "@/context/ThemeProvider";
 
 const inter = Inter({
@@ -18,9 +21,9 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "DevFlow",
+  title: "Dev Overflow",
   description:
-    "A comunty-driven platform for asking and answering programming questions.Get help, share knowledge, and collaborate with developers from around the world. Explore topics in web development, mobile app development, algorithms, data structures, and more.",
+    "A community-driven platform for asking and answering programming questions. Get help, share knowledge, and collaborate with developers from around the world. Explore topics in web development, mobile app development, algorithms, data structures, and more.",
   icons: {
     icon: "/assets/images/site-logo.svg",
   },
@@ -32,17 +35,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang='en'>
       <body className={`${inter.variable} ${spaceGrotesk.variable}`}>
         <ClerkProvider
           appearance={{
             elements: {
               formButtonPrimary: "primary-gradient",
-              footerActionLink: "primary-text-gradient hover:primary-500",
+              footerActionLink: "primary-text-gradient hover:text-primary-500",
             },
           }}
         >
-          <ThemeProvider> {children}</ThemeProvider>
+          <ThemeProvider>{children}</ThemeProvider>
         </ClerkProvider>
       </body>
     </html>

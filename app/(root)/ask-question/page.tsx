@@ -1,7 +1,25 @@
-import React from "react";
+import { auth } from "@clerk/nextjs";
+import { redirect } from "next/navigation";
 
-const page = () => {
-  return <div>Ask question</div>;
+import Question from "@/components/form/Question";
+
+import { getUserById } from "@/lib/actions/user.action";
+
+const Page = async () => {
+  const { userId } = auth();
+  if (!userId) redirect("/sign-in");
+
+  const mongUser = await getUserById({ userId });
+
+  return (
+    <>
+      <h1 className="h1-bold text-dark100_light900">Ask a question</h1>
+
+      <div className="mt-9">
+        <Question mongoUserId={JSON.stringify(mongUser?._id)} />
+      </div>
+    </>
+  );
 };
 
-export default page;
+export default Page;
